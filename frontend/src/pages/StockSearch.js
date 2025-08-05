@@ -6,6 +6,8 @@ function StockSearch() {
     const [stock, setStock] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const [addToPortfolioLoading, setAddToPortfolioLoading] = useState(false);
+    const [addToPortfolioSuccess, setAddToPortfolioSuccess] = useState('');
 
     const fetchStock = async () => {
         if (!symbol.trim()) {
@@ -16,6 +18,7 @@ function StockSearch() {
         setLoading(true);
         setError('');
         setStock(null);
+        setAddToPortfolioSuccess('');
 
         try {
             const res = await axios.get(`http://localhost:8000/stock/${symbol.toUpperCase()}`);
@@ -29,6 +32,44 @@ function StockSearch() {
             }
         } finally {
             setLoading(false);
+        }
+    };
+
+    const addToPortfolio = async () => {
+        if (!stock) return;
+
+        setAddToPortfolioLoading(true);
+        setAddToPortfolioSuccess('');
+        setError('');
+
+        try {
+            // Prompt user for shares and average price
+            const shares = prompt(`How many shares of ${stock.symbol} do you own?`);
+            const avgPrice = prompt(`What was your average purchase price per share for ${stock.symbol}?`);
+            
+            if (!shares || !avgPrice) {
+                setAddToPortfolioLoading(false);
+                return;
+            }
+
+            const portfolioItem = {
+                symbol: stock.symbol,
+                name: stock.name,
+                shares: parseFloat(shares),
+                avg_price: parseFloat(avgPrice)
+            };
+
+            await axios.post('http://localhost:8000/portfolio', portfolioItem);
+            setAddToPortfolioSuccess(`${stock.symbol} successfully added to portfolio!`);
+        } catch (err) {
+            console.error(err);
+            if (err.response?.status === 400) {
+                setError(err.response.data.detail);
+            } else {
+                setError('Failed to add to portfolio. Please try again.');
+            }
+        } finally {
+            setAddToPortfolioLoading(false);
         }
     };
 
@@ -67,6 +108,12 @@ function StockSearch() {
                 </div>
             )}
 
+            {addToPortfolioSuccess && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-600">{addToPortfolioSuccess}</p>
+                </div>
+            )}
+
             {stock && (
                 <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -81,11 +128,19 @@ function StockSearch() {
                     </div>
                     
                     {stock.summary && (
-                        <div className="mt-4">
+                        <div className="mt-4 mb-6">
                             <h4 className="text-lg font-semibold text-gray-800 mb-2">Company Summary</h4>
                             <p className="text-gray-600 leading-relaxed">{stock.summary}</p>
                         </div>
                     )}
+
+                    <button
+                        onClick={addToPortfolio}
+                        disabled={addToPortfolioLoading}
+                        className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                    >
+                        {addToPortfolioLoading ? 'Adding...' : 'Add to Portfolio'}
+                    </button>
                 </div>
             )}
         </div>

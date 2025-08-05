@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import stock
+from routers import stock, portfolio
+from database import engine
+from models.portfolio import Base
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -14,3 +19,4 @@ app.add_middleware(
 )
 
 app.include_router(stock.router)
+app.include_router(portfolio.router)

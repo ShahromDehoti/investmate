@@ -8,7 +8,7 @@ function Home() {
       </h1>
       <div className="bg-white rounded-lg shadow-md p-6">
         <p className="text-gray-600 text-center">
-          Your AI-powered investment companion for beginners
+          Your AI-powered investing sandbox.
         </p>
       </div>
     </div>

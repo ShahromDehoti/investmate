@@ -1,6 +1,14 @@
 # InvestMate
 
-**InvestMate** is an AI-powered investment companion for beginners. It helps users build a basic stock portfolio, learn about safe investment strategies, and ask questions through a built-in conversational assistant.
+**InvestMate** is a beginner-friendly, AI-powered investing sandbox designed to help new investors learn the stock market in a safe and interactive way.
+
+Users can:
+- Build a **virtual stock portfolio** with real-time data using `yfinance`
+- Interact with an **AI assistant** to get personalized investing advice and explanations
+- Learn core investing concepts without the risk of real money
+- Receive AI-backed **stock suggestions** based on goals and risk tolerance
+
+InvestMate is not a trading platform — it's a guided learning tool for users who want to build confidence and financial literacy before entering the real market.
 
 ---
 

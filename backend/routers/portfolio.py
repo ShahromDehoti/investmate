@@ -74,7 +74,9 @@ def add_to_portfolio(item: PortfolioItemCreate, db: Session = Depends(get_db)):
         symbol=item.symbol.upper(),
         name=item.name,
         shares=item.shares,
-        avg_price=item.avg_price
+        avg_price=item.avg_price,
+        logo_url=item.logo_url,
+        country=item.country
     )
     
     db.add(db_item)

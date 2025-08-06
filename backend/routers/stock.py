@@ -18,7 +18,9 @@ def get_stock(symbol: str):
         "symbol": symbol.upper(),
         "name": info.get("shortName", "N/A"),
         "price": info.get("currentPrice", 0.0),
-        "summary": info.get("longBusinessSummary", "Summary not available.")
+        "summary": info.get("longBusinessSummary", "Summary not available."),
+        "logo_url": info.get("logo_url", 'None'),
+        "country": info.get("country", 'None')
     }
 
 @router.get("/stock/{symbol}/details")

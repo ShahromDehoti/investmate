@@ -16,6 +16,8 @@ class PortfolioItemDB(Base):
     name = Column(String, nullable=False)
     shares = Column(Float, nullable=False, default=0.0)
     avg_price = Column(Float, nullable=False, default=0.0)
+    logo_url = Column(String, nullable=True)
+    country = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -25,6 +27,8 @@ class PortfolioItemBase(BaseModel):
     name: str
     shares: float
     avg_price: float
+    logo_url: Optional[str] = None
+    country: Optional[str] = None
 
 class PortfolioItemCreate(PortfolioItemBase):
     pass

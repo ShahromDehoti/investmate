@@ -5,5 +5,3 @@ class StockData(BaseModel):
     symbol: str
     price: float
     summary: str
-    logo_url: str
-    country: str

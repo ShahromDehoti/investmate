@@ -162,29 +162,8 @@ function Portfolio() {
                                 <div className="flex items-start justify-between">
                                     <div className="flex-1">
                                         <div className="mb-4">
-                                            <div className="flex items-center space-x-3">
-                                                {item.logo_url && (
-                                                    <img 
-                                                        src={item.logo_url} 
-                                                        alt={`${item.name} logo`}
-                                                        className="w-10 h-10 rounded-lg object-contain"
-                                                        onError={(e) => {
-                                                            e.target.style.display = 'none';
-                                                        }}
-                                                    />
-                                                )}
-                                                <div>
-                                                    <h3 className="text-xl font-bold text-gray-900">{item.name}</h3>
-                                                    <div className="flex items-center space-x-2">
-                                                        <p className="text-sm text-gray-500">{item.symbol}</p>
-                                                        {item.country && (
-                                                            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                                                                {item.country}
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <h3 className="text-xl font-bold text-gray-900">{item.name}</h3>
+                                            <p className="text-sm text-gray-500">{item.symbol}</p>
                                         </div>
                                         
                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

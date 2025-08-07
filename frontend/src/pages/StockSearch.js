@@ -56,9 +56,7 @@ function StockSearch() {
                 symbol: stock.symbol,
                 name: stock.name,
                 shares: parseFloat(shares),
-                avg_price: parseFloat(avgPrice),
-                logo_url: stock.logo_url,
-                country: stock.country
+                avg_price: parseFloat(avgPrice)
             };
 
             await axios.post('http://localhost:8000/portfolio', portfolioItem);
@@ -119,28 +117,9 @@ function StockSearch() {
             {stock && (
                 <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6">
                     <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center space-x-4">
-                            {stock.logo_url && (
-                                <img 
-                                    src={stock.logo_url} 
-                                    alt={`${stock.name} logo`}
-                                    className="w-12 h-12 rounded-lg object-contain"
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                    }}
-                                />
-                            )}
-                            <div>
-                                <h3 className="text-2xl font-bold text-gray-900">{stock.name}</h3>
-                                <div className="flex items-center space-x-2">
-                                    <span className="text-lg font-semibold text-gray-600">({stock.symbol})</span>
-                                    {stock.country && (
-                                        <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                                            {stock.country}
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
+                        <div>
+                            <h3 className="text-2xl font-bold text-gray-900">{stock.name}</h3>
+                            <span className="text-lg font-semibold text-gray-600">({stock.symbol})</span>
                         </div>
                     </div>
                     

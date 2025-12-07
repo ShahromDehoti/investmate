@@ -12,17 +12,17 @@ InvestMate is not a trading platform — it's a guided learning tool for users w
 
 ---
 
-## 🧠 Key Features
+## Key Features
 
-- 🔍 Search and explore real-time stock data
-- 🤖 Chat with an AI assistant to learn investing basics
-- 📈 Build a simple portfolio with beginner-friendly suggestions
-- 🧾 Get educational summaries for stocks you're considering
-- 💡 Designed for new investors with little to no financial background
+- Search and explore real-time stock data
+- Chat with an AI assistant to learn investing basics
+- Build a simple portfolio with beginner-friendly suggestions
+- Get educational summaries for stocks you're considering
+- Designed for new investors with little to no financial background
 
 ---
 
-## 🖥️ Tech Stack
+## Tech Stack
 
 | Frontend         | Backend          | AI / Data     |
 |------------------|------------------|---------------|

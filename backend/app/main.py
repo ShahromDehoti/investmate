@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-from routers import stock, portfolio
+from routers import stock, portfolio, chat
 from database import engine
 from models.portfolio import Base
 
@@ -26,3 +26,4 @@ async def root():
 
 app.include_router(stock.router)
 app.include_router(portfolio.router)
+app.include_router(chat.router)

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import StockSearch from './pages/StockSearch';
-import Assistant from './pages/Assistant';
+import ChatBot from './components/ChatBot';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -15,8 +15,6 @@ function App() {
         return <Portfolio />;
       case 'search':
         return <StockSearch />;
-      case 'assistant':
-        return <Assistant />;
       default:
         return <Home />;
     }
@@ -49,19 +47,13 @@ function App() {
           >
             Search
           </button>
-          <button 
-            onClick={() => setCurrentPage('assistant')}
-            className={isActivePage('assistant')}
-          >
-            AI Assistant
-          </button>
         </div>
       </nav>
       {renderPage()}
+      {/* ChatBot available on all pages */}
+      <ChatBot />
     </div>
   );
 }
-
-
 
 export default App;

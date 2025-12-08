@@ -34,8 +34,8 @@ async def chat(request: ChatRequest):
                 for msg in request.history
             ]
         
-        # Get AI response
-        ai_reply = get_ai_response(request.message, conversation_history)
+        # Get AI response (async, non-blocking)
+        ai_reply = await get_ai_response(request.message, conversation_history)
         
         return ChatResponse(reply=ai_reply)
     

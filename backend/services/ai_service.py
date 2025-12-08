@@ -1,8 +1,8 @@
 import os
-from openai import OpenAI
+from openai import AsyncOpenAI
 
-# Initialize OpenAI client
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Initialize async OpenAI client
+client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 SYSTEM_PROMPT = """You are an AI investing assistant for InvestMate, a beginner-friendly investing sandbox platform. 
 
@@ -24,9 +24,9 @@ Guidelines:
 Remember: You're a teacher, not a financial advisor. Focus on education over advice."""
 
 
-def get_ai_response(user_message: str, conversation_history: list = None) -> str:
+async def get_ai_response(user_message: str, conversation_history: list = None) -> str:
     """
-    Get AI response using OpenAI GPT-4o-mini
+    Get AI response using OpenAI GPT-4o-mini (async)
     
     Args:
         user_message: The user's message
@@ -46,8 +46,8 @@ def get_ai_response(user_message: str, conversation_history: list = None) -> str
         # Add current user message
         messages.append({"role": "user", "content": user_message})
         
-        # Call OpenAI API
-        response = client.chat.completions.create(
+        # Call OpenAI API (async, non-blocking)
+        response = await client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
             temperature=0.7,
@@ -61,9 +61,9 @@ def get_ai_response(user_message: str, conversation_history: list = None) -> str
         return "I'm having trouble connecting right now. Please make sure your OpenAI API key is set up correctly."
 
 
-def get_stock_analysis(symbol: str, stock_data: dict) -> str:
+async def get_stock_analysis(symbol: str, stock_data: dict) -> str:
     """
-    Get AI analysis of a specific stock (for educational purposes)
+    Get AI analysis of a specific stock (for educational purposes, async)
     
     Args:
         symbol: Stock symbol
@@ -89,7 +89,8 @@ Keep it under 150 words and educational, not advisory."""
             {"role": "user", "content": prompt}
         ]
         
-        response = client.chat.completions.create(
+        # Call OpenAI API (async, non-blocking)
+        response = await client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
             temperature=0.7,
